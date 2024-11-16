@@ -42,15 +42,15 @@ except ValueError:
 # Testes de Print:
 try:
     resultados = {
-        "Tempo total de voo": fl.tempo_total_voo(V0, alpha),
-        "Altura máxima": fl.altura_maxima(V0, alpha),
-        "Distância máxima": fl.distancia_maxima(V0, alpha),
-        "Posição horizontal": fl.posicao_horizontal(V0, alpha, t),
-        "Posição vertical": fl.posicao_vertical(V0, alpha, t),
-        "Velocidade horizontal": fl.velocidade_horizontal(V0, alpha),
-        "Velocidade vertical": fl.velocidade_vertical(V0, alpha, t),
-        "Velocidade resultante": fl.velocidade_resultante(V0, alpha, t),
-        "Ângulo da velocidade": fl.angulo_velocidade(V0, alpha, t),
+        "Tempo total de voo": t_total,
+        "Altura máxima": h_maxima,
+        "Distância máxima": d_maxima,
+        "Posição horizontal": p_horizontal,
+        "Posição vertical": p_vertical,
+        "Velocidade horizontal": velocidade_horizontal,
+        "Velocidade vertical": velocidade_vertical,
+        "Velocidade resultante": v_resultante,
+        "Ângulo da velocidade": angulo_velocidade,
     }
     
     # Exibição dos resultados

@@ -7,7 +7,8 @@ Tempo para observar o objeto: ......(s)
 
 Dados de saída:
 
-V 0 =.....; α =.......;=......; =.....; d max =.....;v x =.....;v y =.....;V=......;
+V 0 =.....; α =.......; t total=......; h max=.....; 
+d max =.....; vx =.....; vy =.....; V=......;
 
 Ensaio 1: Comportamento da altura máxima, distância máxima e tempo
 total de vôo em função do ângulo de lançamento.
