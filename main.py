@@ -12,50 +12,30 @@ except ValueError:
     print("Digite um número válido: :(")
     exit(1)
 
+# Convertendo o angulo para radianos:
+alpha_rad = np.radians(alpha)
 
-# Inicialização de fórmulas:
+# Calculando os dados:
 try:
 
     t_total = fl.tempo_total_voo(V0, alpha)
-
     h_maxima = fl.altura_maxima(V0, alpha)
-
     d_maxima = fl.distancia_maxima(V0, alpha)
 
-    p_horizontal = fl.posicao_horizontal(V0, alpha, t)
+    # Gerando dados para a tragetória:
+    t_values = np.linspace(0, t_total, num = 500)
+    x_values = [fl.posicao_horizontal(V0, alpha, t) for t in t_values]
+    y_values = [fl.posicao_vertical(V0, alpha, t) for t in t_values]
 
-    p_vertical = fl.posicao_vertical(V0, alpha, t)
+    # Destaques do gráfico:
+    pontos_tempo = np.linspace(0, t_total, num = 5)
+    pontos_x = [fl.posicao_horizontal(V0, alpha, t) for t in pontos_tempo]
+    pontos_y = [fl.posicao_vertical(V0, alpha, t) for t in pontos_tempo]
+    velocidades_vx = [fl.velocidade_horizontal(V0, alpha) for t in pontos_tempo]
+    velocidades_vy = [fl.velocidade_vertical(V0, alpha, t) for t in pontos_tempo]
+    velocidades_resultantes = [fl.velocidade_resultante(V0, alpha, t) for t in pontos_tempo]
 
-    velocidade_horizontal = fl.velocidade_horizontal(V0, alpha)
-
-    velocidade_vertical = fl.velocidade_vertical(V0, alpha, t)
-
-    v_resultante = fl.velocidade_resultante(V0, alpha, t)
-
-    angulo_velocidade = fl.angulo_velocidade(V0, alpha, t)
-
-except ValueError:
-    print("Ocorreu um erro no cálculo:")
+except Exception as e:
+    print(f"Erro ao calcular {e}")
     exit(1)
 
-
-# Testes de Print:
-try:
-    resultados = {
-        "Tempo total de voo": t_total,
-        "Altura máxima": h_maxima,
-        "Distância máxima": d_maxima,
-        "Posição horizontal": p_horizontal,
-        "Posição vertical": p_vertical,
-        "Velocidade horizontal": velocidade_horizontal,
-        "Velocidade vertical": velocidade_vertical,
-        "Velocidade resultante": v_resultante,
-        "Ângulo da velocidade": angulo_velocidade,
-    }
-    
-    # Exibição dos resultados
-    for nome, valor in resultados.items():
-        print(f"{nome}: {valor:.2f}")
-except ValueError:
-    print("Ocorreu um erro no cálculo.")
-    exit(1)
