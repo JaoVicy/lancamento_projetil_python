@@ -1,26 +1,61 @@
+import formulas as fl
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Tempo de voo (Teste):
-# Constantes:
 
-g = 9.8 
+try:
+    t = float(input("Digite o Tempo de Observação:").strip())
+    V0 = float(input("Digite V0:").strip())
+    alpha = float(input("Digite Alpha:").strip())
 
-def tempo_voo(h):
-    return np.sqrt((2 * h) / g)
-
-
-# Testes para alturas diferentes:
-
-alturas = np.linspace(0 , 100, 150, 200)
-tempos = tempo_voo(alturas)
+except ValueError:
+    print("Digite um número válido: :(")
+    exit(1)
 
 
-plt.figure(figsize=(10, 6))
-plt.plot(alturas, tempos, label="Tempo de voo", color="blue")
-plt.xlabel("Altura de lançamento (m)")
-plt.ylabel("Tempo de voo (s)")
-plt.title("Tempo de voo em função da altura de lançamento")
-plt.legend()
-plt.grid(True)
-plt.show()
+# Inicialização de fórmulas:
+try:
+
+    t_total = fl.tempo_total_voo(V0, alpha)
+
+    h_maxima = fl.altura_maxima(V0, alpha)
+
+    d_maxima = fl.distancia_maxima(V0, alpha)
+
+    p_horizontal = fl.posicao_horizontal(V0, alpha, t)
+
+    p_vertical = fl.posicao_vertical(V0, alpha, t)
+
+    velocidade_horizontal = fl.velocidade_horizontal(V0, alpha)
+
+    velocidade_vertical = fl.velocidade_vertical(V0, alpha, t)
+
+    v_resultante = fl.velocidade_resultante(V0, alpha, t)
+
+    angulo_velocidade = fl.angulo_velocidade(V0, alpha, t)
+
+except ValueError:
+    print("Ocorreu um erro no cálculo:")
+    exit(1)
+
+
+# Testes de Print:
+try:
+    resultados = {
+        "Tempo total de voo": fl.tempo_total_voo(V0, alpha),
+        "Altura máxima": fl.altura_maxima(V0, alpha),
+        "Distância máxima": fl.distancia_maxima(V0, alpha),
+        "Posição horizontal": fl.posicao_horizontal(V0, alpha, t),
+        "Posição vertical": fl.posicao_vertical(V0, alpha, t),
+        "Velocidade horizontal": fl.velocidade_horizontal(V0, alpha),
+        "Velocidade vertical": fl.velocidade_vertical(V0, alpha, t),
+        "Velocidade resultante": fl.velocidade_resultante(V0, alpha, t),
+        "Ângulo da velocidade": fl.angulo_velocidade(V0, alpha, t),
+    }
+    
+    # Exibição dos resultados
+    for nome, valor in resultados.items():
+        print(f"{nome}: {valor:.2f}")
+except ValueError:
+    print("Ocorreu um erro no cálculo.")
+    exit(1)
