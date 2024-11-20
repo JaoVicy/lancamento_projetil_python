@@ -1,6 +1,7 @@
 import formulas as fl
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
 
 try:
@@ -34,6 +35,8 @@ try:
     velocidades_vx = [fl.velocidade_horizontal(V0, alpha) for t in pontos_tempo]
     velocidades_vy = [fl.velocidade_vertical(V0, alpha, t) for t in pontos_tempo]
     velocidades_resultantes = [fl.velocidade_resultante(V0, alpha, t) for t in pontos_tempo]
+    angulos = [fl.angulo_velocidade(V0, alpha, t) for t in pontos_tempo]
+
 
 except Exception as e:
     print(f"Erro ao calcular {e}")
@@ -72,17 +75,19 @@ plt.grid()
 
 plt.show()
 
-#Mostrar Dados:
-valores_variaveis = np.array([
-    V0, alpha, t, t_total, h_maxima, d_maxima,
-    velocidades_vx[0], velocidades_vy[0], velocidades_resultantes[0], 10, x_values[0], y_values[0]
-], dtype=object)
 
-# Exibindo as variáveis
-for nome, valor in zip(
-    ["V0", "alpha", "t", "t_total", "h_maxima", "d_maxima", "velocidades_vx", 
-     "velocidades_vy", "velocidades_resultantes", "outro_valor", "x_values", "y_values"], 
-    valores_variaveis
-):
-    print(f"{nome}: {valor}")
+# Dados da Tabela:
+dados_tabela = {
+    "Tempo (s)": pontos_tempo,
+    "Posição X (m)": pontos_x,
+    "Posição Y (m)": pontos_y,
+    "Vx (m/s)": velocidades_vx,
+    "Vy (m/s)": velocidades_vy,
+    "V (m/s)": velocidades_resultantes,
+    "Ângulo (°)": angulos
+}
 
+# Criando e exibindo a tabela:
+tabela = pd.DataFrame(dados_tabela)
+print("\nTabela de Dados:")
+print(tabela.to_string(index=False))
