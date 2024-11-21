@@ -1,18 +1,18 @@
 import numpy as np
 
-g = 9.81
+G = 9.81
 
 # Tempo total de voo:
 def tempo_total_voo(V0, alpha):
-    return (2 * V0 * np.sin(np.radians(alpha))) / g
+    return (2 * V0 * np.sin(np.radians(alpha))) / G
 
 # Altura Máxima:
 def altura_maxima(V0, alpha):
-    return(V0**2 * (np.sin(np.radians(alpha))**2)) / (2 * g)
+    return(V0**2 * (np.sin(np.radians(alpha))**2)) / (2 * G)
 
 # Distância Máxima:
 def distancia_maxima(V0, alpha):
-    return(V0**2 * np.sin(np.radians(2 * alpha))) / g
+    return(V0**2 * np.sin(np.radians(2 * alpha))) / G
 
 # Posição Horizontal:
 def posicao_horizontal(V0, alpha, t):
@@ -20,7 +20,7 @@ def posicao_horizontal(V0, alpha, t):
 
 # Posição na vertical:
 def posicao_vertical(V0, alpha, t):
-    return(V0 * np.sin(np.radians(alpha)) * t) - (0.5 * g * t**2)
+    return(V0 * np.sin(np.radians(alpha)) * t) - (0.5 * G * t**2)
 
 # Velocidade na horizontal:
 def velocidade_horizontal(V0, alpha):
@@ -28,7 +28,7 @@ def velocidade_horizontal(V0, alpha):
 
 # Velocidade na vertical:
 def velocidade_vertical(V0, alpha, t):
-    return (V0 * np.sin(np.radians(alpha)) - g * t)
+    return (V0 * np.sin(np.radians(alpha)) - G * t)
 
 # Velocidade resultante:
 def velocidade_resultante(V0, alpha, t):
