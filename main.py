@@ -14,7 +14,7 @@ except ValueError:
     exit(1)
 
 # Convertendo o angulo para radianos:
-alpha_rad = np.radians(alpha)
+ALPHA_RAD = np.radians(alpha)
 
 # Calculando os dados:
 try:
@@ -77,7 +77,7 @@ plt.show()
 
 
 # Dados da Tabela:
-dados_tabela = {
+DADOS_TABELA = {
     "Tempo (s)": pontos_tempo,
     "Posição X (m)": pontos_x,
     "Posição Y (m)": pontos_y,
@@ -88,6 +88,6 @@ dados_tabela = {
 }
 
 # Criando e exibindo a tabela:
-tabela = pd.DataFrame(dados_tabela)
+TABELA = pd.DataFrame(dados_tabela)
 print("\nTabela de Dados:")
 print(tabela.to_string(index=False))
